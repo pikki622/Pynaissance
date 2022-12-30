@@ -73,10 +73,7 @@ def f_score(y_true, y_pred, beta=1):
     """
     p = precision(y_true, y_pred)
     r = recall(y_true, y_pred)
-    if p * r == 0:
-        return 0
-
-    return (1 + beta ** 2) * p * r / (beta ** 2 * p + r)
+    return 0 if p * r == 0 else (1 + beta ** 2) * p * r / (beta ** 2 * p + r)
 
 
 def confusion_matrix(y_true, y_pred):

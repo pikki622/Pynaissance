@@ -13,11 +13,7 @@ class GradientDescent:
         @param variables: variables for optimization
         @return opt_vars: optimized variables
         """
-        opt_vars = []
-        for var in variables:
-            opt_vars += [self.learning_rate * var]
-
-        return opt_vars
+        return [self.learning_rate * var for var in variables]
 
 
 class Momentum:
@@ -39,6 +35,4 @@ class Momentum:
         for i in range(len(variables)):
             self.var += [(1 - self.alpha) * variables[i] + self.alpha * self.v[i]]
 
-        opt_vars = self.learning_rate * np.array(self.var)
-
-        return opt_vars
+        return self.learning_rate * np.array(self.var)

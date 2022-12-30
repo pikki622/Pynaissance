@@ -61,7 +61,7 @@ def exp_lamda_MLE(X):
   return s/T
 
 pdf = scipy.stats.exon.pdf
-x = range(0, 80)
+x = range(80)
 plt.hist(X, bins=x, normed='true')
 plt.plot(pdf(x, scale=1))
 plt.xlabel('Value')

@@ -35,13 +35,11 @@ def rand_portfolio(returns):
   p = np.asmatrix(np.mean(returns, axis=1))
   w = np.asmatrix(rand_weights(returns.shape[0]))
   c = np.asmatrix(np.cov(returns))
-  
+
   mean = w*p.T
   sd = np.sqrt(w*c*w.T)
-  
-  if mean > 2:
-    return rand_portfolio(returns)
-  return mean, sd
+
+  return rand_portfolio(returns) if mean > 2 else (mean, sd)
 
 def optimal_portfolio(returns):
   n = len(returns)
@@ -74,7 +72,8 @@ def optimal_portfolio(returns):
   return returns, risks
 
 n_portfolios = 50000
-means, sds = np.column_stack([rand_portfolio(return_vec) for x in range(n_portfolios)])
+means, sds = np.column_stack(
+    [rand_portfolio(return_vec) for _ in range(n_portfolios)])
 returns, risks = optimal_portfolio(return_vec)
 
 plt.plot(stds, means, 'o', markersize=2, color='navy')

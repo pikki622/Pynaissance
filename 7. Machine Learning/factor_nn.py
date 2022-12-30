@@ -111,5 +111,3 @@ def train(model, device, dataloader, epochs=200)
     
     return model
 
-if __name__=="__main__":
-  pass

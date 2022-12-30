@@ -69,9 +69,7 @@ class BisectingKMeans(KMeans):
             model = KMeans()
             label = model.fit(data, 2, 100)
 
-            clusters.append(np.flatnonzero(label == 0))
-            clusters.append(np.flatnonzero(label == 1))
-
+            clusters.extend((np.flatnonzero(label == 0), np.flatnonzero(label == 1)))
             if len(clusters) == n_clusters:
                 break
 
